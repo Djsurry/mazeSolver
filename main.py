@@ -1,10 +1,10 @@
 from PIL import Image
-import random
-imName = input('input image name. dont add extension. only accepts pngs: ')
+import random, sys
+imName = sys.argv[1]
 try:
-    im = Image.open(imName + '.png')
+    im = Image.open(imName )
 except:
-    print('image loading failed. Did you add extension? Are you in the right directory? Is it a .png image? Names are case sensitive')
+    print('image loading failed.')
     quit()
 width, width = im.size
 pix = im.load()
@@ -40,23 +40,30 @@ def checkMaze():
     good = []
     good2 = []
     for x in range(width):
+       
         good.append(0) if pix[x,0] == (0,0,0) else good.append(1)
         good2.append(0) if pix[x,width-1] == (0,0,0) else good2.append(1)
     if 1 not in good or 1 not in good2:
+
         return 0
+       
     good.remove(1)
     good2.remove(1)
     if 1 in good or 1 in good2:
+
         return 0
     edges = [pix[0, n] for n in range(width)]
     edges += [pix[width-1, n] for n in range(width)]
     if (255, 255, 255) in edges:
+      
         return 0
     good = True
     for i in range(width):
         for j in range(width):
-            if pix[i,j] != (255,255,255) and pix[i,j] == (0,0,0):
+            if pix[i,j] != (255, 255, 255) and pix[i,j] != (0, 0, 0):
+                
                 return 0
+    
     return 1
 
 def makeFinalImage(path, starter, last):
@@ -84,16 +91,20 @@ while currentSpot[1] != width-1:
     pm = possibleMoves(currentSpot[0], currentSpot[1], checkedSpots)
     path.append(currentSpot)
     if len(pm) == 0:
+        print('here')
         if len(choiceMade) == 0:
             print('not solveable')
             makeFinalImage(path, starter, None)
             img = Image.open(imName + '_solved.png')
             img.show()
             quit()
+        if choiceMade[-1] == currentSpot:
+            choiceMade.remove(currentSpot)
         currentSpot = choiceMade[-1]
         index = path.index(currentSpot)
         del path[index:]
     else:
+
         move = random.choice(pm)
         if len(pm) > 1:
             choiceMade.append(currentSpot)
@@ -101,7 +112,21 @@ while currentSpot[1] != width-1:
     print(currentSpot)
 
 print('solved !!!')
+print(path)
 makeFinalImage(path, starter, currentSpot)
 img = Image.open(imName + '_solved.png')
 img.show()
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
