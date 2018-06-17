@@ -1,6 +1,6 @@
 it like solves mazes and stuff
 
-stole the idea to solve mazes from https://www.youtube.com/watch?v=rop0W4QDOUI also the way they formatted the mazes made it easy so the mazes have to be formatted in the same way.
+stole the idea to solve mazes from https://www.youtube.com/watch?v=rop0W4QDOUI also the way they formatted the mazes made it easy so the mazes have to be formatted in the same way. There is an example in the repository.
 
 ****WAY TO FORMAT MAZES****
 
